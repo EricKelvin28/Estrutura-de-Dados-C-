@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void insert_short(int v[],int tam){
+void insertion_short(int v[],int tam){
     for (int j = 2; j < tam; j++)
     {
         int chave = v[j];
