@@ -14,3 +14,7 @@ void insertion_short(int v[],int tam){
         v[i+1] = chave;
     }
 }
+
+int main(){
+    return 0;
+}

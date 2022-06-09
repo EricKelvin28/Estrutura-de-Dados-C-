@@ -94,3 +94,6 @@ void remover_final(TLista *lse){
     }
 }
 
+void main(){
+    
+}
