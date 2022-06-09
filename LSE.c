@@ -12,14 +12,14 @@ typedef struct lista{
     int qntde;
 }TLista;
 
-TElemento *criarElemento(void *carga){
+TElemento *criar_elemento(void *carga){
     TElemento *novo = malloc(sizeof(TElemento));
     novo->carga = carga;
     novo->proximo = NULL;
     return novo;
 }
 
-TLista *criarLista(){
+TLista *criar_lista(){
     TLista *lse = malloc(sizeof(TLista));
     lse->inicio = NULL;
     lse->final = NULL;
@@ -28,7 +28,7 @@ TLista *criarLista(){
 }
 
 void inserir_inicio(TLista *lse, void *carga_nova){
-    TElemento *elem = criarElemento(carga_nova);
+    TElemento *elem = criar_elemento(carga_nova);
     if(lse->inicio == NULL){
         lse->inicio = elem;
         lse->final = elem;
@@ -41,7 +41,7 @@ void inserir_inicio(TLista *lse, void *carga_nova){
 }
 
 void inserir_final(TLista *lse,void *carga_nova){
-    TElemento *elem = criarElemento(carga_nova);
+    TElemento *elem = criar_elemento(carga_nova);
     if(lse->inicio == NULL){
         lse->inicio = elem;
         lse->final = elem;
@@ -68,6 +68,28 @@ void remover_inicio (TLista *lse, TDestroy destroy){
         }
         free(primeiro);
         destroy(carga);
+        lse->qntde--;
+    }
+}
+
+void remover_final(TLista *lse){
+    if(lse->inicio == NULL){
+        printf("-----Lista Vazia-----");
+    }
+    else if(lse->inicio == lse->final){
+        lse->inicio = NULL;
+        lse->final = NULL;
+        lse->qntde --;
+    }
+    else{
+        TElemento *cam = lse->inicio;
+        while(cam->proximo!=lse->final){
+            cam = cam->proximo;
+        }
+        free(cam->carga);
+        destroy(lse->final);
+        lse->final = cam;
+        free(cam->proximo);
         lse->qntde--;
     }
 }
